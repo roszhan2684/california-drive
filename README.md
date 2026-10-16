@@ -1,5 +1,7 @@
 # California Drive
 
+**▶ Play: https://roszhan2684.github.io/california-drive/** (desktop browser with WebGL2; keyboard or gamepad)
+
 An accountless, browser-based open-world driving game set in California. Pick a city on a 3D relief map of the state, choose your car and paint in the garage, and drive streets built from open map data, with cinematic cameras, lighting, weather, traffic, pedestrians and fully synthesized sound.
 
 - **No account, no backend, no analytics.** Settings and session bests live in `sessionStorage` and are gone when you close the tab. A **Reset Session** button wipes them immediately.
@@ -110,6 +112,9 @@ CD_PLACES=1 CD_PLACE_LIST="name:sf:day:37.8015,-122.4185:0" npx playwright test 
 Dev/QA URL parameters: `?city=sf&time=golden&weather=fog&skip=1` loads straight into a district. `&at=lat,lon` teleports to a spot (tunnels allowed), `&ao=0|1` toggles baked AO and `&hdri=0` disables the photo sky.
 
 ## Deploy
+
+Every push to `main` deploys to GitHub Pages via `.github/workflows/pages.yml`. That build sets `VITE_PUBLIC_BUILD=1`, so it ships only the fictional Vireo S6 (no branded vehicles). Local builds keep the M3.
+
 
 `npm run build` produces a static `dist/` folder for any static host (Cloudflare Pages, Netlify, Vercel, GitHub Pages). `public/_headers` and `vercel.json` set a strict CSP and cache headers. Download sizes: title ≈ 280 KB gzip; world + physics ≈ 1.7 MB gzip, loaded on demand; each district 0.5–2.4 MB JSON (≈ 0.25–0.85 MB gzip); CC0 textures + HDRI ≈ 3.4 MB and fonts ≈ 0.2 MB (cached after first visit; the game renders with procedural fallbacks until they arrive); relief 204 KB; city previews ≈ 0.1 MB each.
 
