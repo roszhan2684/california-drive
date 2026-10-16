@@ -1,6 +1,6 @@
 # California Drive
 
-**▶ Play: https://roszhan2684.github.io/california-drive/** (desktop browser with WebGL2; keyboard or gamepad)
+**▶ Play: https://roszhan2684.github.io/california-drive/** (desktop browser with WebGL2; keyboard or gamepad) · **Website: https://california-drive.vercel.app**
 
 An accountless, browser-based open-world driving game set in California. Pick a city on a 3D relief map of the state, choose your car and paint in the garage, and drive streets built from open map data, with cinematic cameras, lighting, weather, traffic, pedestrians and fully synthesized sound.
 
@@ -112,6 +112,8 @@ CD_PLACES=1 CD_PLACE_LIST="name:sf:day:37.8015,-122.4185:0" npx playwright test 
 Dev/QA URL parameters: `?city=sf&time=golden&weather=fog&skip=1` loads straight into a district. `&at=lat,lon` teleports to a spot (tunnels allowed), `&ao=0|1` toggles baked AO and `&hdri=0` disables the photo sky.
 
 ## Deploy
+
+The marketing site lives in `site/` (static HTML, see `site/README.md`) and is deployed to Vercel as the `california-drive` project. Its "Play" buttons and city cards deep-link into the game (`?city=&time=&weather=`).
 
 Every push to `main` deploys to GitHub Pages via `.github/workflows/pages.yml`. That build sets `VITE_PUBLIC_BUILD=1`, so it ships only the fictional Vireo S6 (no branded vehicles). Local builds keep the M3.
 

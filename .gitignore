@@ -5,3 +5,7 @@ test-results
 playwright-report
 .DS_Store
 qa-shots
+
+# marketing-site capture sources (JPEGs are committed)
+site/media/raw
+site/.vercel

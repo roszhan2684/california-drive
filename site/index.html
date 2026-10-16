@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>California Drive: a free open-world driving game in your browser</title>
+  <meta name="description" content="Drive nine real California districts built from open map data: San Francisco, LA, San Diego, Lake Tahoe, Yosemite and more. Free, no account, no download. Runs in your browser." />
+  <meta name="theme-color" content="#07090c" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="California Drive" />
+  <meta property="og:description" content="A free open-world driving game in your browser. Nine real California districts, no account, no download." />
+  <meta property="og:image" content="https://california-drive.vercel.app/media/og.jpg" />
+  <meta property="og:url" content="https://california-drive.vercel.app/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ff7a3d'/%3E%3Cpath d='M12 40h40M18 34l6-10h16l6 10' stroke='%23111' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preload" href="fonts/BebasNeue-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#cities">Skip to cities</a>
+
+  <header class="nav" data-nav>
+    <a class="brand" href="#top" aria-label="California Drive home"><i class="dot"></i>California Drive</a>
+    <nav aria-label="Sections">
+      <a href="#cities">Cities</a>
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#controls">Controls</a>
+      <a href="#open">Open source</a>
+    </nav>
+    <a class="btn btn-sm" data-play href="#">Play free <span aria-hidden="true">→</span></a>
+  </header>
+
+  <main id="top">
+    <!-- HERO: a gameplay slideshow framed like the in-game HUD -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="slides" data-slides aria-hidden="true">
+        <img src="media/sf-golden.jpg" alt="" fetchpriority="high" />
+        <img src="media/la-night.jpg" alt="" loading="lazy" />
+        <img src="media/tahoe-snow.jpg" alt="" loading="lazy" />
+        <img src="media/smc-wheel-night.jpg" alt="" loading="lazy" />
+        <img src="media/yosemite-golden.jpg" alt="" loading="lazy" />
+      </div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="scan" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <pre class="syslog" data-syslog aria-hidden="true"></pre>
+        <p class="eyebrow">Free · in your browser · no account</p>
+        <h1 id="hero-title" class="logo">California<span>Drive</span></h1>
+        <p class="lede">Nine real California districts, built street by street from open map data. Fog over the Embarcadero, neon in downtown LA, snow on Highway 89. Pick a city and drive.</p>
+        <div class="cta-row">
+          <a class="btn btn-xl" data-play href="#">
+            <span class="ign" aria-hidden="true"></span>Start the game
+          </a>
+          <a class="btn btn-ghost" href="#cities">Choose a city</a>
+        </div>
+        <p class="device" data-device>Desktop browser with WebGL2 · keyboard or gamepad</p>
+      </div>
+
+      <div class="hud-chip" aria-hidden="true">
+        <div class="gauge"><b data-speed>0</b><span>MPH</span></div>
+        <div class="readout"><span data-place>SAN FRANCISCO · EMBARCADERO</span><span data-compass>NW · 312°</span></div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" aria-label="At a glance">
+      <div><b data-count="9">9</b><span>real districts</span></div>
+      <div><b data-count="15">15</b><span>traffic vehicle types</span></div>
+      <div><b data-count="5">5</b><span>weather systems</span></div>
+      <div><b data-count="9">9</b><span>camera views</span></div>
+      <div><b>0</b><span>accounts, trackers or downloads</span></div>
+    </section>
+
+    <!-- CITIES -->
+    <section id="cities" class="cities" aria-labelledby="cities-title">
+      <div class="sec-head">
+        <p class="eyebrow">Choose your city</p>
+        <h2 id="cities-title">Nine districts. Real streets.</h2>
+        <p class="sub">Every road, building, park and tree comes from OpenStreetMap; every hill comes from USGS elevation data. Pick a pin, pick the light, and the game drops you straight there.</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-wrap">
+          <svg class="ca-map" data-map role="group" aria-label="Map of California with nine drivable districts"></svg>
+        </div>
+        <article class="city-card" data-card aria-live="polite">
+          <div class="city-img" data-city-img></div>
+          <p class="eyebrow" data-city-district></p>
+          <h3 data-city-name></h3>
+          <p class="city-mood" data-city-mood></p>
+          <div class="times" role="group" aria-label="Time of day" data-times></div>
+          <a class="btn" data-city-go href="#">Drive here</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="features" aria-labelledby="features-title">
+      <div class="sec-head">
+        <p class="eyebrow">What's in the box</p>
+        <h2 id="features-title">A whole state, in a browser tab</h2>
+      </div>
+
+      <div class="feature">
+        <img src="media/sf-golden.jpg" alt="A coupe on the Embarcadero in San Francisco at golden hour, with fog rolling over the hills" loading="lazy" />
+        <div>
+          <p class="tag">Open map data</p>
+          <h3>Streets you can recognise</h3>
+          <p>The Broadway and Stockton tunnels, the Embarcadero, Bunker Hill, the Gaslamp, the switchbacks above Emerald Bay. Roads, crosswalks, signals, piers and bridges are generated from OpenStreetMap, and the terrain is real elevation, so San Francisco's hills are as steep as they should be.</p>
+        </div>
+      </div>
+
+      <div class="feature flip">
+        <img src="media/la-night.jpg" alt="Downtown Los Angeles at night with traffic lights and headlights" loading="lazy" />
+        <div>
+          <p class="tag">Living traffic</p>
+          <h3>Taxis, trucks, and lights and sirens</h3>
+          <p>Traffic follows real lanes, stops at signals and yields at junctions. Sedans and pickups share the road with taxis, box trucks, garbage trucks and fire engines. Some police cars and ambulances are on a call, with strobing lightbars and a siren that Doppler-shifts as they pass.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <img src="media/tahoe-snow.jpg" alt="Snow falling on a mountain road at Lake Tahoe" loading="lazy" />
+        <div>
+          <p class="tag">Weather and time</p>
+          <h3>Karl the Fog included</h3>
+          <p>Dawn, day, golden hour, dusk and night, plus clear, overcast, fog, rain and snow. Roads get wet, puddles reflect street lamps, and San Francisco's marine layer rolls in off the bay. Tyres lose grip in the wet, and snow at Tahoe really is slippery.</p>
+        </div>
+      </div>
+
+      <div class="feature flip">
+        <img src="media/hud-lock.jpg" alt="The game's heads-up display, with a lock-on reticle over a nearby activity and a radar minimap" loading="lazy" />
+        <div>
+          <p class="tag">Cinematic HUD</p>
+          <h3>A dashboard that boots up</h3>
+          <p>Every drive starts with an instrument self-test: needle sweep, warning lights, radar iris. A sweeping radar tracks traffic, and a reticle locks onto the nearest time trial, drift zone or photo spot and tells you how far it is.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <img src="media/smc-wheel-night.jpg" alt="The Santa Monica pier Ferris wheel at night with a rainbow LED rim" loading="lazy" />
+        <div>
+          <p class="tag">Things to do</p>
+          <h3>Time trials, drift zones, postcards</h3>
+          <p>Race your own ghost, link drifts in a beach lot, clock the speed trap, thread a slalom, or park it perfectly. Then switch to photo mode, set depth of field and focal length, and save a postcard of your drive.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="gallery" aria-labelledby="gallery-title">
+      <div class="sec-head">
+        <p class="eyebrow">Gallery</p>
+        <h2 id="gallery-title">Captured in the game</h2>
+        <p class="sub">Every image is a raw in-game frame (rendered in software, so real GPUs look sharper).</p>
+      </div>
+      <div class="grid" data-gallery></div>
+    </section>
+
+    <!-- CONTROLS -->
+    <section id="controls" class="controls" aria-labelledby="controls-title">
+      <div class="sec-head">
+        <p class="eyebrow">Controls</p>
+        <h2 id="controls-title">Pick up and drive</h2>
+      </div>
+      <div class="ctrl-cols">
+        <ul class="keys">
+          <li><span class="k" style="--g:url(keys/keyboard_w.svg)"></span><span class="k" style="--g:url(keys/keyboard_a.svg)"></span><span class="k" style="--g:url(keys/keyboard_s.svg)"></span><span class="k" style="--g:url(keys/keyboard_d.svg)"></span><b>Drive and steer</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_space.svg)"></span><b>Handbrake and drift</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_c.svg)"></span><b>Change camera</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_t.svg)"></span><b>Start an activity</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_f.svg)"></span><b>Photo mode</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_l.svg)"></span><span class="k" style="--g:url(keys/keyboard_h.svg)"></span><b>Lights and horn</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_r.svg)"></span><b>Reset car</b></li>
+          <li><span class="k" style="--g:url(keys/keyboard_escape.svg)"></span><b>Menu and settings</b></li>
+        </ul>
+        <div class="pad-note">
+          <p class="tag">Gamepad</p>
+          <p><span class="k" style="--g:url(keys/xbox_rt.svg)"></span><span class="k" style="--g:url(keys/xbox_lt.svg)"></span> throttle and brake, <span class="k" style="--g:url(keys/xbox_stick_l.svg)"></span> steer, <span class="k" style="--g:url(keys/xbox_button_a.svg)"></span> handbrake, <span class="k" style="--g:url(keys/xbox_button_y.svg)"></span> camera. On-screen prompts switch to controller buttons as soon as you pick one up.</p>
+          <p class="note">Every key can be remapped in the pause menu. Touch screens aren't supported yet, so play on a laptop or desktop.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN -->
+    <section id="open" class="open" aria-labelledby="open-title">
+      <div class="sec-head">
+        <p class="eyebrow">Open and private</p>
+        <h2 id="open-title">Built entirely from free and open sources</h2>
+        <p class="sub">No accounts, no analytics, no cookies. Settings live in your tab and vanish when you close it. The game never talks to any server but its own.</p>
+      </div>
+      <div class="credits" data-credits>
+        <div><b>Map data</b><span>© OpenStreetMap contributors (ODbL)</span></div>
+        <div><b>Elevation</b><span>AWS Terrain Tiles · USGS 3DEP</span></div>
+        <div><b>Vehicles, debris, glyphs</b><span>Kenney (CC0)</span></div>
+        <div><b>Textures and sky</b><span>Poly Haven (CC0)</span></div>
+        <div><b>Fonts</b><span>Bebas Neue, Rajdhani, Share Tech Mono, Inter (OFL)</span></div>
+        <div><b>Rendering and physics</b><span>three.js (MIT) · Rapier (Apache-2.0)</span></div>
+        <div><b>Sound</b><span>Every engine note, siren and song is synthesized in code</span></div>
+        <div><b>Source code</b><span><a href="https://github.com/roszhan2684/california-drive">github.com/roszhan2684/california-drive</a> (MIT)</span></div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final" aria-labelledby="final-title">
+      <img src="media/sd-golden.jpg" alt="" loading="lazy" aria-hidden="true" />
+      <div>
+        <h2 id="final-title">Your engine is warm.</h2>
+        <p>Free. No sign-up. About a 10 MB first load, then cached.</p>
+        <a class="btn btn-xl" data-play href="#"><span class="ign" aria-hidden="true"></span>Start the game</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>California Drive is a fan project by <a href="https://roszhan.vercel.app">Roszhan Raj</a>. Cars and liveries are fictional. Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
+    <p><a href="https://github.com/roszhan2684/california-drive">Source on GitHub</a> · <a data-play href="#">Play</a></p>
+  </footer>
+
+  <div class="lightbox" data-lightbox hidden>
+    <button class="lb-close" data-lb-close aria-label="Close">×</button>
+    <img alt="" data-lb-img />
+    <p data-lb-cap></p>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
