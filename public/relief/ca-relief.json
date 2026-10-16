@@ -1,0 +1,11 @@
+{
+ "cols": 300,
+ "rows": 340,
+ "s": 32.3,
+ "n": 42.2,
+ "w": -124.7,
+ "e": -113.8,
+ "min": -500,
+ "max": 4006,
+ "source": "AWS Terrain Tiles (Terrarium), z7"
+}
