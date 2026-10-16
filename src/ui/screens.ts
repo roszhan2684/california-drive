@@ -2,13 +2,16 @@ import { CITIES, type CityDef, type TimePreset, type WeatherKind } from '../worl
 import { arrowNav, el, esc, focusFirst, qs, show } from './dom.ts';
 import { mapFrame, outlinePath, project } from './caMap.ts';
 
+/** Public builds (GitHub Pages) ship without the branded M3; see PUBLIC_BUILD in vehicles.ts. */
+const PUBLIC = import.meta.env?.VITE_PUBLIC_BUILD === '1';
+
 export class TitleScreen {
   readonly root: HTMLElement;
   constructor(ui: HTMLElement, h: { drive(): void; select(): void; garage(): void; controls(): void; graphics(): void; about(): void }, lastCity: string) {
     this.root = el('section', 'screen title hidden', `
       <div class="vignette"></div>
       <h1 class="logo">California<span>Drive</span></h1>
-      <p class="tagline">Pick a California city, drop into an M3 Competition and just drive. Streets, hills and skylines are built from open map data. No account, no saves, nothing leaves your browser.</p>
+      <p class="tagline">Pick a California city, drop into ${PUBLIC ? 'the driver\u2019s seat' : 'an M3 Competition'} and just drive. Streets, hills and skylines are built from open map data. No account, no saves, nothing leaves your browser.</p>
       <div class="menu" role="menu" aria-label="Main menu">
         <button class="primary" data-a="drive" role="menuitem">Drive <span>${esc(CITIES.find((c) => c.id === lastCity)?.name ?? 'San Francisco')} →</span></button>
         <button data-a="select" role="menuitem">City Select <kbd>Map</kbd></button>
@@ -17,7 +20,7 @@ export class TitleScreen {
         <button data-a="graphics" role="menuitem">Graphics &amp; Audio</button>
         <button data-a="about" role="menuitem">About &amp; Licenses</button>
       </div>
-      <div class="title-foot">Map data © OpenStreetMap contributors (ODbL) · Elevation: AWS Terrain Tiles (USGS 3DEP)<br/>Models and audio are generated in code · Textures &amp; sky: Poly Haven (CC0) · Font: Barlow (OFL). BMW and M3 are trademarks of BMW AG; fan-made, not affiliated.</div>
+      <div class="title-foot">Map data © OpenStreetMap contributors (ODbL) · Elevation: AWS Terrain Tiles (USGS 3DEP)<br/>Traffic, debris &amp; glyphs: Kenney (CC0) · Textures &amp; sky: Poly Haven (CC0) · Fonts: OFL · Audio synthesized in code.${PUBLIC ? '' : ' BMW and M3 are trademarks of BMW AG; fan-made, not affiliated.'}</div>
     `);
     ui.appendChild(this.root);
     this.root.querySelectorAll<HTMLButtonElement>('.menu button').forEach((b) => b.addEventListener('click', () => (h as any)[b.dataset.a!]()));

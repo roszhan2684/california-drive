@@ -13,9 +13,9 @@ An accountless, browser-based open-world driving game set in California. Pick a 
 | ![Title](docs/media/title.jpg) | ![San Francisco — Karl the Fog rolling in](docs/media/sf-golden-fog.jpg) |
 | ![Los Angeles downtown by day](docs/media/la-day-clear.jpg) | ![San Diego Gaslamp at golden hour](docs/media/sd-golden-clear.jpg) |
 | ![Lake Tahoe Highway 89 in snow](docs/media/tahoe-day-snow.jpg) | ![Yosemite Valley at golden hour](docs/media/yosemite-golden-clear.jpg) |
-| ![SF night, cockpit camera with live gauges](docs/media/sf-night-clear-3.jpg) | ![Broadway Tunnel, San Francisco](docs/media/tunnel.jpg) |
+| ![SF at night, hood camera with live gauges](docs/media/sf-night-clear-3.jpg) | ![Santa Monica pier Ferris wheel at night](docs/media/smc-wheel-night.jpg) |
 
-<sub>Screenshots are from headless Chrome with software rendering (SwiftShader). On a real GPU, shadows, anti-aliasing and frame rate are better.</sub>
+<sub>Screenshots are from the public build (Vireo S6) in headless Chrome with software rendering (SwiftShader). On a real GPU, shadows, anti-aliasing and frame rate are better.</sub>
 
 ## Regions
 
